@@ -99,6 +99,7 @@ def test_user_missing_password_hash(app):
         db.session.rollback()
 
 
+
 def test_repr(app):
     """The __repr__ method returns the expected string."""
     with app.app_context():
@@ -107,3 +108,9 @@ def test_repr(app):
         db.session.commit()
 
         assert repr(user) == '<User repruser>'
+
+
+def test_dotenv_import():
+    """python-dotenv must be importable (production dependency)."""
+    import dotenv
+    assert hasattr(dotenv, 'load_dotenv'), "dotenv.load_dotenv not found"
